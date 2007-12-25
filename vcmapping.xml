@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!-- file VCMapping.xml -->
+<visualcomponents xmlns="http://www.jcows.org/VCSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.jcows.org/VCSchema vcschema.xsd">
+  <mapping datatype="boolean">
+    <visualclass>org.jcows.view.vc.VCboolean</visualclass>
+    <javatype>java.lang.Boolean</javatype>
+    <javatype>boolean</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>false</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.BooleanValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="byte">
+    <visualclass>org.jcows.view.vc.VCbyte</visualclass>
+    <javatype>java.lang.Byte</javatype>
+    <javatype>byte</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>0</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.ByteValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="short">
+    <visualclass>org.jcows.view.vc.VCshort</visualclass>
+    <javatype>java.lang.Short</javatype>
+    <javatype>short</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>0</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.ShortValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="int">
+    <visualclass>org.jcows.view.vc.VCint</visualclass>
+    <javatype>java.lang.Integer</javatype>
+    <javatype>int</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>0</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.IntValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="long">
+    <visualclass>org.jcows.view.vc.VClong</visualclass>
+    <javatype>java.lang.Long</javatype>
+    <javatype>long</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>0</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.LongValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="float">
+    <visualclass>org.jcows.view.vc.VCfloat</visualclass>
+    <javatype>java.lang.Float</javatype>
+    <javatype>float</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>0.0</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.FloatValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="double">
+    <visualclass>org.jcows.view.vc.VCdouble</visualclass>
+    <javatype>java.lang.Double</javatype>
+    <javatype>double</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>0.0</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.DoubleValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="char">
+    <visualclass>org.jcows.view.vc.VCchar</visualclass>
+    <javatype>java.lang.Character</javatype>
+    <javatype>char</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>c</defaultvalue>
+    <defaultvalidatorclass>org.jcows.model.vc.CharValidator</defaultvalidatorclass>
+  </mapping>
+  <mapping datatype="string">
+    <visualclass>org.jcows.view.vc.VCstring</visualclass>
+    <javatype>java.lang.String</javatype>
+    <itemtype>field</itemtype>
+    <defaultvalue>string</defaultvalue>
+  </mapping>
+  <mapping datatype="container">
+    <visualclass>org.jcows.view.vc.VCContainer</visualclass>
+    <itemtype>container</itemtype>
+  </mapping>
+  <mapping datatype="array">
+    <visualclass>org.jcows.view.vc.VCArray</visualclass>
+    <itemtype>array</itemtype>
+  </mapping>
+</visualcomponents>

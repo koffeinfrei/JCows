@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!-- vcmapping.xsd -->
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ab="http://www.jcows.org/VCSchema"
+  targetNamespace="http://www.jcows.org/VCSchema" elementFormDefault="qualified"
+  attributeFormDefault="unqualified">
+  <xsd:element name="visualcomponents">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="mapping" type="ab:Mapping" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:complexType name="Mapping">
+    <xsd:sequence>
+      <xsd:element name="visualclass">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <!-- <xsd:pattern value="[A-Z\$_][a-zA-Z0-9\$_]*"/> -->
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+      <xsd:element name="javatype" type="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xsd:element name="itemtype" type="xsd:string"/>
+      <xsd:element name="defaultvalue" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+      <xsd:element name="defaultvalidatorclass" minOccurs="0" maxOccurs="1">
+        <xsd:simpleType>
+          <xsd:restriction base="xsd:string">
+            <!-- <xsd:pattern value="[A-Z\$_][a-zA-Z0-9\$_]*"/> -->
+          </xsd:restriction>
+        </xsd:simpleType>
+      </xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="datatype" type="xsd:string" use="required"/>
+  </xsd:complexType>
+</xsd:schema>

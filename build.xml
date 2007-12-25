@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+
+<project name="jcows" default="help" basedir=".">
+	
+  <property file="build.properties" />
+  <property environment="env" />
+
+  <path id="classpath.win32">
+    <fileset dir="${lib}/win32">
+      <include name="**/*.jar" />
+    </fileset>
+    <fileset dir="lib">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+  
+  <path id="classpath.linux">
+    <fileset dir="${lib}/linux">
+      <include name="**/*.jar" />
+    </fileset>
+    <fileset dir="lib">
+      <include name="*.jar" />
+    </fileset>
+  </path>
+	
+  <patternset id="non.test.sources">
+    <include name="**/*.java"/>
+    <exclude name="**/org/jcows/test/"/>
+  </patternset>
+
+  <target name="help">
+    <echo message="init:        Creates directories for the build process." />
+    <echo message="compile:     Compiles JCows for Linux and Win32 plattform." />
+    <echo message="clean:       Clean directories."/>
+    <echo message="dist:        Creates a JCows Jar file for Linux and Win32 plattform." />
+    <echo message="run:         Starts the JCows application." />
+    <echo message="docs:        Creates Javadoc from source code." />
+    <echo message="libs:        Download libraries from jcows.org to compile JCows" />
+    <echo message="all:         Does clean, compile, docs and dist." />
+    <echo message="                                            " />
+    <echo message="upload.libs: Uploads libraries to jcows.org (only admin)." />
+  </target>
+
+  <target name="init" description="Creates directories for the build process">
+    <mkdir dir="${build}/win32" />
+    <mkdir dir="${build}/linux" />
+    <mkdir dir="${dist}/win32" />
+    <mkdir dir="${dist}/linux" />
+  </target>
+
+  <target name="compile" depends="init" description="Compiles JCows for Linux and Win32 plattform">
+    <javac srcdir="${src}" destdir="${build}/win32">
+      <classpath refid="classpath.win32" />
+      <patternset refid="non.test.sources"/>    
+    </javac>
+    <javac srcdir="${src}" destdir="${build}/linux">
+      <classpath refid="classpath.linux" />
+      <patternset refid="non.test.sources"/>   
+    </javac>
+    <copy todir="${build}/win32">
+      <fileset dir=".">
+        <include name="config.properties" />
+        <include name="messages.properties" />
+        <include name="vcmapping.xml" />
+        <include name="vcschema.xsd" />
+      </fileset>
+      <fileset dir="${lib}/win32/" excludes="**/*.jar" />
+    </copy>
+    <copy todir="${build}/linux">
+      <fileset dir=".">
+        <include name="config.properties" />
+        <include name="messages.properties" />
+        <include name="vcmapping.xml" />
+        <include name="vcschema.xsd" />
+      </fileset>
+      <fileset dir="${lib}/linux/" excludes="**/*.jar" />
+    </copy>
+  </target>
+  
+  <target name="clean" description="Clean directories">
+    <delete dir="${build}" />
+    <delete dir="${dist}" />
+    <delete dir="${doc}" />
+  </target>
+	
+  <target name="dist" depends="compile" description="Creates a JCows Jar file for Linux and Win32 plattform">
+    <unjar dest="${build}/win32" overwrite="no">
+        <patternset>
+            <include name="**"/>
+            <exclude name="**/META-INF/**"/>
+            <exclude name="*"/>
+        </patternset>
+        <fileset dir="lib">
+            <include name="win32/**/*.jar"/>
+            <include name="*.jar"/>
+        </fileset>
+    </unjar>
+    <unjar dest="${build}/linux" overwrite="no">
+        <patternset>
+            <include name="**"/>
+            <exclude name="**/META-INF/**"/>
+            <exclude name="*"/>
+        </patternset>
+        <fileset dir="lib">
+            <include name="linux/**/*.jar"/>
+            <include name="*.jar"/>
+        </fileset>
+    </unjar>
+    <jar destfile="${dist}/win32/${ant.project.name}_${version}_win32.jar">
+      <fileset dir="${build}/win32" />
+      <fileset dir="." includes="resources/**,LICENSE*,INSTALL,README" />
+      <manifest>
+        <attribute name="Main-Class" value="${main.class}" />
+      </manifest>
+    </jar>
+    <jar destfile="${dist}/linux/${ant.project.name}_${version}_linux.jar">
+      <fileset dir="${build}/linux" />
+      <fileset dir="." includes="resources/**,LICENSE*,INSTALL,README" />
+      <manifest>
+        <attribute name="Main-Class" value="${main.class}" />
+      </manifest>
+    </jar>
+  </target>
+  
+  <target name="run" depends="compile" description="Starts the JCows application">
+    <java classname="${main.class}" classpathref="classpath.win32" classpath="${build}/win32" fork="yes">
+      <arg line="${args}" />
+    </java>
+  </target>
+  
+  <target name="docs" depends="init" description="Creates Javadoc from source code">
+    <javadoc packagenames="*"
+             sourcepath="src"
+             classpathref="classpath.win32"
+             excludepackagenames="org.jcows.test.*,com.cloudgarden.*"
+             defaultexcludes="yes"
+             destdir="${doc}/api"
+             public="true"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="JCows API">
+      <doctitle><![CDATA[<h1>JCows - Generic Java Client for Web Services</h1>This document is the public API specification for the JCows 0.2.<br/><br/>]]></doctitle>
+      <header><![CDATA[JCows API 0.2]]></header>
+      <bottom><![CDATA[<b>JCows Project</b> is open source and is available at the <a href="http://www.jcows.org">project site</a>.]]></bottom>
+      <footer><![CDATA[JCows API 0.2]]></footer>
+      <tag name="todo" scope="all" description="To do:" />
+    </javadoc>
+    <javadoc packagenames="*"
+             sourcepath="src"
+             classpathref="classpath.win32"
+             excludepackagenames="org.jcows.test.*,com.cloudgarden.*"
+             defaultexcludes="yes"
+             destdir="${doc}/api_dev"
+             private="true"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="JCows Development API">
+      <doctitle><![CDATA[<h1>JCows - Generic Java Client for Web Services</h1>This document is the full API specification for the JCows 0.2. All members and methods are fully contained herein.<br/><br/>]]></doctitle>
+      <header><![CDATA[JCows API 0.2]]></header>
+      <bottom><![CDATA[<b>JCows Project</b> is open source and is available at the <a href="http://www.jcows.org">project site</a>.]]></bottom>
+      <footer><![CDATA[JCows API 0.2]]></footer>
+      <tag name="todo" scope="all" description="To do:" />
+    </javadoc>
+  </target>
+  
+  <available file="libs" property="libs.available"/>
+  <target name="libs" depends="" description="Download libraries from jcows.org to compile JCows" unless="libs.available">  
+    <get src="http://www.jcows.org/dist/ext_libs.jar" dest="ext_libs.jar" />
+    <unzip src="ext_libs.jar" dest="${lib}" />
+    <delete file="ext_libs.jar"/>
+  </target>
+  
+  <target name="upload.libs" depends="" description="Uploads libraries to jcows.org"> 
+    <jar destfile="ext_libs.jar" basedir="${lib}/" />
+    <input message="Please enter ftp username:" addproperty="ftp.username" />
+    <input message="Please enter ftp password:" addproperty="ftp.password" />
+    <ftp server="www.jcows.org" userid="${ftp.username}" password="${ftp.password}" remotedir="/dist">
+      <fileset dir=".">
+        <include name="ext_libs.jar" />
+      </fileset>
+    </ftp>
+    <delete file="ext_libs.jar"/>  
+  </target>
+
+  <target name="all" depends="clean,compile,docs,dist" description="Does clean, compile, docs and dist">
+  </target>
+
+</project>

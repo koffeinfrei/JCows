@@ -1,0 +1,40 @@
+
+                                 JCows
+
+
+What is it? 
+-----------
+
+JCows was developed for the purpose of testing Web Services.
+JCows is essentially a generic client application that enables a user to
+invoke the operations of virtually any Web Service in respect of its interface
+description (WSDL). It provides a graphical user interface for the purpose of
+entering the parameters and displaying the results.
+
+
+The Latest Version
+------------------
+
+Details of the latest version can be found on the JCows
+Project web site <http://www.jcows.org/>.
+
+
+Documentation
+-------------
+
+Documentation is available in PDF or HTML format, in the docs/ directory.
+For information about building and installing JCows, see
+docs/manual/index.html
+
+
+Licensing
+---------
+
+This software is licensed under the terms you may find in the file 
+named "LICENSE" in this directory.
+
+
+Thanks for using JCows.
+
+                                          Project JCows
+                                         <http://www.jcows.org/>

@@ -1,0 +1,63 @@
+
+                                 JCows
+
+
+Libraries
+-----------
+
+The simpliest way to get the libraries is to use the ant script
+provided with this source. Simply use "ant libs" to download them
+from our server. If you don't have ant installed or wish to get
+the newest versions or for whatever reasons you may also download
+them directly from the corresponding homepage.
+
+
+Common libraries:
+  Axis 1.4
+  - axis.jar
+  - commons-logging.jar
+  - commons-discovery.jar
+  - jaxrpc.jar
+  - log4j.jar
+  - saaj.jar
+
+  Ant 1.6.5
+  - ant.jar
+  - ant-launcher.jar
+
+  JDom 1.0
+  - jdom.jar
+
+  JUnit 4.1
+  - junit.jar
+
+  Wsdl4j 1.6 (don't use the version provided with the axis 1.4 package)
+  - wsdl4j.jar
+
+
+Platform dependent libraries:
+win32
+  SWT 3.139
+  - swt.jar
+  - swt-awt-win32-3139.dll
+  - swt-gdip-win32-3139.dll
+  - swt-win32-3139.dll
+
+linux
+  SWT 3.139
+  - swt.jar
+  - libcairo.so.1
+  - libswt-awt-gtk-3139.so
+  - libswt-gnome-gtk-3139.so
+  - libswt-mozilla-gtk-3139.so
+  - libswt-atk-gtk-3139.so
+  - libswt-cairo-gtk-3139.so
+  - libswt-gtk-3139.so
+  - libswt-pi-gtk-3139.so
+
+
+
+Thanks for using JCows.
+
+                                          Project JCows
+                                         <http://www.jcows.org/>
