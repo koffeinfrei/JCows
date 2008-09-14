@@ -46,7 +46,7 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE German
 
 # Installer attributes
-OutFile dist\win32\jcows_0.2.1_setup.exe
+OutFile dist\win32\jcows_0.2.1_win32_setup.exe
 InstallDir $PROGRAMFILES\JCows
 CRCCheck on
 XPStyle on
