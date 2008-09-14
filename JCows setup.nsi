@@ -4,7 +4,7 @@
 Name JCows
 # Defines
 !define REGKEY "SOFTWARE\$(^Name)"
-!define VERSION 0.2
+!define VERSION 0.2.1
 !define COMPANY "Project JCows"
 !define URL http://www.jcows.org
 
@@ -46,12 +46,12 @@ Var StartMenuGroup
 !insertmacro MUI_LANGUAGE German
 
 # Installer attributes
-OutFile jcows_0.2_setup.exe
+OutFile dist\win32\jcows_0.2.1_setup.exe
 InstallDir $PROGRAMFILES\JCows
 CRCCheck on
 XPStyle on
 ShowInstDetails show
-VIProductVersion 0.2.0.0
+VIProductVersion 0.2.1.0
 VIAddVersionKey /LANG=${LANG_ENGLISH} ProductName JCows
 VIAddVersionKey ProductVersion "${VERSION}"
 VIAddVersionKey /LANG=${LANG_ENGLISH} CompanyName "${COMPANY}"
@@ -67,7 +67,7 @@ Section -Main SEC0000
     SetOutPath $INSTDIR
     SetOverwrite on
     File dist\win32\jcows.exe
-    File dist\win32\jcows_0.2_win32.jar
+    File dist\win32\jcows_0.2.1_win32.jar
     SetOutPath $SMPROGRAMS\$StartMenuGroup
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\JCows Homepage.lnk" http://www.jcows.org
     CreateShortcut "$SMPROGRAMS\$StartMenuGroup\JCows.lnk" $INSTDIR\jcows.exe
@@ -113,7 +113,7 @@ Section /o un.Main UNSEC0000
     Delete /REBOOTOK "$DESKTOP\JCows.lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\JCows.lnk"
     Delete /REBOOTOK "$SMPROGRAMS\$StartMenuGroup\JCows Homepage.lnk"
-    Delete /REBOOTOK $INSTDIR\jcows_0.2_win32.jar
+    Delete /REBOOTOK $INSTDIR\jcows_0.2.1_win32.jar
     Delete /REBOOTOK $INSTDIR\jcows.exe
     DeleteRegValue HKLM "${REGKEY}\Components" Main
 SectionEnd
